@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Healthcare Provider Dashboard{% endblock %}
+
+{% block content %}
+<h1>Welcome, Healthcare Provider</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Patient Name</th>
+            <th>Diagnosis</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.diagnosis }}</td>
+            <td>
+                <a href="/providers/update_patient/{{ patient.id }}">Update</a> |
+                <a href="/providers/message/{{ patient.id }}">Message</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
