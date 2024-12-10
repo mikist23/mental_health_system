@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Customer Detail{% endblock %}
+{% block content %}
+<h1>Customer: {{ customer.first_name }} {{ customer.last_name }}</h1>
+<p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
+<p><strong>Address:</strong> {{ customer.address }}</p>
+
+<h2>Orders</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.order_date }}</td>
+            <td>
+                <a href="{% url 'order_detail' order.id %}">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
