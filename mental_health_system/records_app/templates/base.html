@@ -9,18 +9,33 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="top-nav">
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/providers/dashboard/">Healthcare Providers</a></li>
                 <li><a href="/patients/dashboard/">Patients</a></li>
+                <li><a href="/products/add/">Add Products</a></li>
+                <li><a href="/logout/">Logout</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="/admin/customers/">Admin</a></li>
+                <li><a href="/patients/dashboard/">Patients</a></li>
+                <li><a href="/appointments/">Appointments</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+
     <footer>
         <p>&copy; 2024 Mental Health System</p>
     </footer>

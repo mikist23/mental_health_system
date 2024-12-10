@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Customers{% endblock %}
+{% block title %}Customer List{% endblock %}
+
 {% block content %}
 <h1>Customer List</h1>
 <table>
     <thead>
         <tr>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Phone Number</th>
             <th>Address</th>
             <th>Actions</th>
@@ -14,11 +16,13 @@
     <tbody>
         {% for customer in customers %}
         <tr>
-            <td>{{ customer.first_name }} {{ customer.last_name }}</td>
+            <td>{{ customer.first_name }}</td>
+            <td>{{ customer.last_name }}</td>
             <td>{{ customer.phone_number }}</td>
             <td>{{ customer.address }}</td>
             <td>
-                <a href="{% url 'customer_detail' customer.id %}">View</a>
+                <a href="/admin/edit_customer/{{ customer.id }}/" class="btn">Edit</a>
+                <a href="/admin/delete_customer/{{ customer.id }}/" class="btn danger">Delete</a>
             </td>
         </tr>
         {% endfor %}

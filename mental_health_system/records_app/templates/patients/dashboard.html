@@ -2,10 +2,29 @@
 {% block title %}Patient Dashboard{% endblock %}
 
 {% block content %}
-<h1>Welcome, {{ patient.name }}</h1>
-<h2>Your Records</h2>
-<p><strong>Diagnosis:</strong> {{ patient.diagnosis }}</p>
-<p><strong>Treatment Plan:</strong> {{ patient.treatment_plan }}</p>
+<h1>Welcome, {{ patient.first_name }} {{ patient.last_name }}</h1>
+<p><strong>Phone:</strong> {{ patient.phone_number }}</p>
+<p><strong>Address:</strong> {{ patient.address }}</p>
 
-<a href="/patients/treatment_plan/">View Detailed Treatment Plan</a>
+<h2>Your Orders</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order_item in order_items %}
+        <tr>
+            <td>{{ order_item.order.id }}</td>
+            <td>{{ order_item.product.product_name }}</td>
+            <td>{{ order_item.quantity }}</td>
+            <td>${{ order_item.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
