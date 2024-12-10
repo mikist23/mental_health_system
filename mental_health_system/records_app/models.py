@@ -39,9 +39,19 @@ class OrderItem(models.Model):
 
 # Payment model
 class Payment(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE)
+    PAYMENT_METHODS = [
+        ('Credit Card', 'Credit Card'),
+        ('Debit Card', 'Debit Card'),
+        ('ACH Transfer', 'Automated Clearing House (ACH) Transfer'),
+        ('Cash', 'Cash'),
+        ('Paper Check', 'Paper Check'),
+        ('eCheck', 'eCheck'),
+        ('Digital Payment', 'Digital Payment'),
+    ]
+
+    order = models.OneToOneField('Order', on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True)
-    payment_method = models.CharField(max_length=50)
+    payment_method = models.CharField(max_length=50, choices=PAYMENT_METHODS)
 
     def __str__(self):
-        return f"Payment for Order {self.order.id}"
+        return f"Payment for Order {self.order.id} via {self.payment_method}"
